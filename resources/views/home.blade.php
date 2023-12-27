@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('header')
-    Header
+    <x-shared.header-page title="Inicio" path="products.index" button="Ver tus productos"
+        description="Reportes y resumen del sistema" />
 @endsection
 
 
 @section('contenido')
-    <h1>Hola mundo desde HOME</h1>
-    
 @endsection

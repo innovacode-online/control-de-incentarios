@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Fonts -->
+    <!-- ICONS -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
     @vite('resources/css/app.css')
@@ -31,17 +31,17 @@
                 </a>
 
 
-                <a href="/products" class="{{ request()->path() == '/products' ? 'sidebar__menu--item sidebar__menu--active' : 'sidebar__menu--item'  }}">
+                <a href="/products" class="{{ request()->path() == 'products' ? 'sidebar__menu--item sidebar__menu--active' : 'sidebar__menu--item'  }}">
                     <i class="uil uil-shopping-bag"></i>
                     <span>Productos</span>
                 </a>
 
-                <a href="/categories" class="{{ request()->path() == '/categories' ? 'sidebar__menu--item sidebar__menu--active' : 'sidebar__menu--item'  }}">
+                <a href="{{ route('categories.index') }}" class="{{ request()->path() == 'categories' ? 'sidebar__menu--item sidebar__menu--active' : 'sidebar__menu--item'  }}">
                     <i class="uil uil-clipboard-notes"></i>
                     <span>Categorias</span>
                 </a>
 
-                <a href="/users" class="{{ request()->path() == '/users' ? 'sidebar__menu--item sidebar__menu--active' : 'sidebar__menu--item'  }}">
+                <a href="/users" class="{{ request()->path() == 'users' ? 'sidebar__menu--item sidebar__menu--active' : 'sidebar__menu--item'  }}">
                     <i class="uil uil-users-alt"></i>
                     <span>Usuarios</span>
                 </a>
