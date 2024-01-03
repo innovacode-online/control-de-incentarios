@@ -42,19 +42,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.edit', ["category" => $category]);
     }
 
     /**
@@ -62,7 +55,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->name = $request->name;
+
+        if( $request->hasFile('image') )
+        {
+            $category->image = $request->image->store("images", "public");
+        }
+
+        $category->save();
+        return redirect('/categories');
+
     }
 
     /**

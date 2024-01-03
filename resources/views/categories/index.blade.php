@@ -30,7 +30,7 @@
                     <p>{{ $category->name }}</p>
 
                     <div class="col-span-2 flex items-center gap-4">
-                        <a href="" class="btn-primary-icon">
+                        <a href="{{ route('categories.edit', $category->id) }}" class="btn-primary-icon">
                             <i class="uil uil-pen"></i>
                         </a>
 
