@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,5 @@ Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name(
 
 
 Route::resource('products', ProductController::class);
+
+Route::resource('auth/login', LoginController::class)->only(['index', 'store']);
