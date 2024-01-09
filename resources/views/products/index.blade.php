@@ -18,42 +18,43 @@
                 <h4>Precio</h4>
                 <h4>Acciones</h4>
             </div>
+
             <div class="divider"></div>
 
+            <div class="space-y-4">
+                @forelse ($products as $product)
+                    <form method="POST" action="{{ route('products.destroy', $product->id) }}" class="grid grid-cols-7 gap-4 items-center">
 
+                        @method('DELETE')
+                        @csrf
 
-            @forelse ($products as $product)
-                <form action="">
+                        <p>#{{ $product->id }}</p>
+                        <img src="{{ $product->image }}" alt="{{ $product->name }}" width="64">
+                        <p>{{ $product->name }}</p>
+                        <p class="line-clamp-1">{{ $product->description }}</p>
+                        <p>{{ $product->stock }}</p>
+                        <p>{{ $product->price }}</p>
 
-                    @method('DELETE')
-                    @csrf
+                        <div class=" flex items-center gap-4">
+                            <a href="{{ route('products.show', $product->slug) }}" class="btn-primary-icon">
+                                <i class="uil uil-eye"></i>
+                            </a>
 
-                    <p>#{{ $product->id }}</p>
-                    <img src="{{ $product->image }}" alt="{{ $product->name }}" width="64">
-                    <p>{{ $product->name }}</p>
-                    <p>{{ $product->description }}</p>
-                    <p>{{ $product->stock }}</p>
-                    <p>{{ $product->price }}</p>
+                            <a href="{{ route('products.edit', $product->id) }}" class="btn-primary-icon">
+                                <i class="uil uil-pen"></i>
+                            </a>
 
-                    <div class="col-span-2 flex items-center gap-4">
-                        <a href="{{ route('products.show', $product->id) }}" class="btn-primary-icon">
-                            <i class="uil uil-eye"></i>
-                        </a>
+                            <button type="submit" class="btn-danger-icon">
+                                <i class="uil uil-trash-alt"></i>
+                            </button>
 
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn-primary-icon">
-                            <i class="uil uil-pen"></i>
-                        </a>
+                        </div>
+                    </form>
 
-                        <button type="submit" class="btn-danger-icon">
-                            <i class="uil uil-trash-alt"></i>
-                        </button>
-
-                    </div>
-                </form>
-
-            @empty
-                <p class="text-center">No hay productos</p>
-            @endforelse
+                @empty
+                    <p class="text-center">No hay productos</p>
+                @endforelse
+            </div>
 
 
         </div>

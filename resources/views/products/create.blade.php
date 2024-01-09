@@ -9,7 +9,8 @@
 @section('contenido')
     <div class="md:grid md:grid-cols-2">
 
-        <form class="max-w-lg w-full mx-auto space-y-4">
+        <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data" class="max-w-lg w-full mx-auto space-y-4">
+            @csrf
             <div class="form-control">
                 <label for="name">Nombre: </label>
                 <input type="text" id="name" name="name">

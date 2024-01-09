@@ -33,15 +33,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->stock = $request->stock;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->status = true;
+        $product->slug = $this->create_slug(  $request->name );
+        $product->image = $request->image->store("images", "public");
+        $product->save();
+
+        return redirect('/products');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $product = Product::where('slug', $slug)->first();
+
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -65,6 +79,18 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect()->back();
+    }
+
+    private function create_slug( string $text )
+    {
+        $text = strtolower($text);
+        $text = preg_replace('/[^a-z0-9]+/', '-', $text);
+        $text = trim($text,'-');
+        $text = preg_replace('/-+/', '-', $text);
+        return $text;
     }
 }
