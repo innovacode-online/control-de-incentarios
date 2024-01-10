@@ -8,8 +8,13 @@
 
 @section('content')
     
-    <form action="" class="auth__login--form">
+    <form novalidate action="{{ route('login.store') }}" method="POST" class="auth__login--form">
         @csrf
+
+
+        @if (session('message'))
+            <p class="alert">{{ session('message') }}</p>
+        @endif
 
         <div class="form-control">
             <label>Correo electronico: </label>
@@ -17,9 +22,11 @@
                 type="email" 
                 name="email"
                 placeholder="correo@example.com"
-                
+                class="@error('email') input-error  @enderror"
             >
-            
+            @error('email')
+                <p class="alert">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="form-control">
@@ -28,9 +35,12 @@
                 type="password"  
                 name="password"
                 placeholder="Ingresa tu contraseña"
+                class="@error('password') input-error  @enderror"
                 
             >
-            
+            @error('password')
+                <p class="alert">{{ $message }}</p>
+            @enderror
         </div>
 
         <button class="btn-primary w-full">Iniciar Sesion</button>

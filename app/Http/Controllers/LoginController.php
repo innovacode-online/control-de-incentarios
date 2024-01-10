@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -13,8 +14,17 @@ class LoginController extends Controller
 
 
     // CREA LA SESION
-    public function store()
+    public function store( LoginRequest $request )
     {
-        
+
+        $credentials =  $request->validated();
+
+        if( !Auth::attempt($credentials) )
+        {
+            return back()->with('message', 'Credenciales incorrectas');
+        }
+
+        return redirect()->route('products.index');
+
     }
 }
