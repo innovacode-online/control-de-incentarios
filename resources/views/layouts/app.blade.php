@@ -52,6 +52,14 @@
                     </a>
                 @endif
 
+                
+                @if ( auth()->user()->role->name == 'Administrador')
+                    <a href="/sales" class="{{ request()->path() == 'sales' ? 'sidebar__menu--item sidebar__menu--active' : 'sidebar__menu--item'  }}">
+                        <i class="uil uil-shopping-cart-alt"></i>
+                        <span>Ventas</span>
+                    </a>
+                @endif
+
             </ul>
             
             <div class="flex-1"></div>
